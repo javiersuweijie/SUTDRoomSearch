@@ -7,8 +7,6 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 public class Image extends MainActivity{
-	FrameLayout main;
-	
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.map1);
