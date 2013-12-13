@@ -4,10 +4,10 @@
     android:layout_height="match_parent"
     android:id="@+id/b1">
 
-    <ImageView
+    <com.example.sutdroomsearch.TouchImageView
         android:contentDescription="@string/app_name"
-        android:id="@+id/imageView1"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"/>
+        android:id="@+id/map"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
 </FrameLayout>
