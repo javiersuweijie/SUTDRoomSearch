@@ -1,6 +1,7 @@
 package com.example.sutdroomsearch;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
@@ -8,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -82,6 +84,15 @@ public class MapActivity extends Activity{
 				Bitmap img = BitmapFactory.decodeResource(getResources(), R.drawable.east_4th, options);
 				map.setImageBitmap(img);
 				Toast.makeText(getApplicationContext(), "Click on button 3", Toast.LENGTH_LONG).show();
+			}
+		});
+
+		EditText search = (EditText) findViewById(R.id.search_input);
+		search.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent i = new Intent(MapActivity.this, SearchActivity.class);
+				startActivity(i);
 			}
 		});
 	}
