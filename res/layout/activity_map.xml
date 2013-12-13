@@ -10,4 +10,33 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:orientation="vertical"
+      android:layout_gravity="bottom|left" >
+      
+      <Button
+        android:id="@+id/level2_east"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="L2 East" />
+
+      <Button
+        android:id="@+id/level3_east"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="L3 East" />
+      
+      <Button
+        android:id="@+id/level4_east"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="L4 East" />
+
+    </LinearLayout>
+
 </FrameLayout>
