@@ -28,7 +28,8 @@
         <activity
             android:name="com.example.sutdroomsearch.SearchActivity"
             android:label="@string/title_activity_search"
-            android:theme="@style/FullscreenTheme" >
+            android:theme="@style/FullscreenTheme"
+            android:windowSoftInputMode="stateVisible" >
         </activity>
     </application>
 
