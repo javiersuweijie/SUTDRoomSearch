@@ -1,22 +1,23 @@
 package com.example.sutdroomsearch.util;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.Arrays;
 
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 	private static DatabaseHelper sInstance = null;
-	private static String DB_PATH = "/data/data/SUTDRoomSearch/databases/";
-	private static final String DB_NAME = "development";
+	private static String DB_PATH = "/data/data/com.example.sutdroomsearch/databases/";
+	private static final String DB_NAME = "development.db";
 	private static final int DATABASE_VERSION = 1;
 	private final Context myContext;
 	private SQLiteDatabase db;
@@ -26,7 +27,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	    // don't accidentally leak an Activity's context.
 	    // See this article for more information: http://bit.ly/6LRzfx
 	  if (sInstance == null) {
-	      sInstance = new DatabaseHelper(context.getApplicationContext());
+	      sInstance = new DatabaseHelper(context);
 	      try {
 			sInstance.createDataBase();
 		} catch (IOException e) {
@@ -49,7 +50,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		if (checkDataBase()) {
 			
 		} else {
-			this.getReadableDatabase();
+			getWritableDatabase();
+			
 			try {
 				copyDataBase();
 			} catch (IOException e) {
@@ -60,29 +62,47 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	
 	private boolean checkDataBase() {
 		SQLiteDatabase checkDB = null;
+		String myPath = DB_PATH+DB_NAME;
+		File dbFile = new File(myPath);
+		return dbFile.exists();
+		/*
 		try {
-			String myPath = DB_PATH+DB_NAME;
 			checkDB = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READONLY);
 		} catch (SQLException e) {
 			//database does not exist yet.
+			Log.i("Database", "Database does not exist yet");
 		}
 		if (checkDB != null) {
 			checkDB.close();
 		}
 		return checkDB !=null ? true:false;
+		*/
 	}
 	
 	private void copyDataBase() throws IOException {
-		InputStream input = myContext.getAssets().open(DB_NAME);
+		Log.i("Database", "Copying Database");
+		Log.i("Database", Arrays.toString(myContext.getAssets().list("")));
+
+		InputStream input=null;
+		try {
+			input = myContext.getAssets().open("development.db");
+		} catch (IOException e) {
+			Log.i("Database","Error occurred when opening development.db");
+		}
 		String outFileName = DB_PATH + DB_NAME;
-		OutputStream output = new FileOutputStream(outFileName);
-		
-		byte[] buffer = new byte[1024];
-		int length;
+		OutputStream output = null;
+		File file = new File(DB_PATH);
+		Log.i("Database",Boolean.toString(file.isDirectory()));
+		try {
+			output = new FileOutputStream(outFileName);
+			byte[] buffer = new byte[1024];
+			int length;
 		while ((length = input.read(buffer))>0) {
 			output.write(buffer, 0, length);
-		}
-		
+			}
+		} catch (IOException e) {
+			Log.i("Database", "Error caught when writing stream");
+		}	
 		output.flush();
 		output.close();
 		input.close();
@@ -101,7 +121,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 	@Override
 	public void onCreate(SQLiteDatabase db) {
-		// TODO Auto-generated method stub
 	}
 
 	@Override
@@ -110,6 +129,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	}
 	
 	public Cursor getPerson(int id) {
-		return db.query("people", new String[] {"_id"},"_id=?",new String[] {String.valueOf(id)},null,null,null,null);
+		return db.query("people", new String[] {"_id, name, location_id"},"_id=?",new String[] {String.valueOf(id)},null,null,null,null);
 	}
 }
