@@ -15,12 +15,6 @@
 		android:theme="@style/AppTheme"
 		android:debuggable="true" >
 		<activity
-			android:name="com.example.sutdroomsearch.MainActivity"
-			android:configChanges="orientation|keyboardHidden|screenSize"
-			android:label="@string/app_name"
-			android:theme="@style/FullscreenTheme" >
-		</activity>
-		<activity
 			android:name="com.example.sutdroomsearch.MapActivity"
 			android:configChanges="orientation|keyboardHidden|screenSize"
 			android:label="@string/app_name"
@@ -30,12 +24,6 @@
 
 				<category android:name="android.intent.category.LAUNCHER" />
 			</intent-filter>
-		</activity>
-		<activity
-			android:name="com.example.sutdroomsearch.button_image"
-			android:configChanges="orientation|keyboardHidden|screenSize"
-			android:label="@string/app_name"
-			android:theme="@style/FullscreenTheme" >
 		</activity>
 	</application>
 
