@@ -20,7 +20,7 @@ public class MainActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				Intent i=new Intent(MainActivity.this,ImageActivity.class);
+				Intent i=new Intent(MainActivity.this,Image.class);
 				startActivity(i);
 			}
 		});
