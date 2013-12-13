@@ -7,12 +7,16 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MapActivity extends MainActivity{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_map);
+		LinearLayout ll = (LinearLayout) findViewById(R.id.details);
+		ll.setVisibility(View.GONE);
 		
 		// Generate bitmap		
 		BitmapFactory.Options options = new BitmapFactory.Options();
@@ -33,6 +37,10 @@ public class MapActivity extends MainActivity{
 				float[] pts = {mapView.last.x, mapView.last.y};
 				m.mapPoints(pts);
 				Log.d("Info", "Mapped to real image: " + pts[0] + ", " + pts[1]);
+				TextView tv = (TextView) findViewById(R.id.coords);
+				tv.setText("Mapped to real image: " + pts[0] + ", " + pts[1]);
+				LinearLayout ll = (LinearLayout) findViewById(R.id.details);
+				ll.setVisibility(View.VISIBLE);
 			}
 		});
 

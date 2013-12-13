@@ -17,31 +17,54 @@
         android:hint="Search" />
 
     <LinearLayout
-      android:layout_width="wrap_content"
+      android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:orientation="vertical"
-      android:layout_gravity="bottom|left" >
-      
-      <Button
-        android:id="@+id/level2_east"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="L2 East" />
+      android:layout_gravity="bottom" >
 
-      <Button
-        android:id="@+id/level3_east"
-        style="?android:attr/buttonStyleSmall"
+      <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="L3 East" />
-      
-      <Button
-        android:id="@+id/level4_east"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="left" >
+        
+        <Button
+          android:id="@+id/level2_east"
+          style="?android:attr/buttonStyleSmall"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="L2 East" />
+
+        <Button
+          android:id="@+id/level3_east"
+          style="?android:attr/buttonStyleSmall"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="L3 East" />
+        
+        <Button
+          android:id="@+id/level4_east"
+          style="?android:attr/buttonStyleSmall"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="L4 East" />
+
+      </LinearLayout>
+
+      <LinearLayout
+        android:id="@+id/details"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="L4 East" />
+        android:orientation="vertical"
+        android:layout_gravity="bottom" >
+        
+        <TextView
+          android:id="@+id/coords"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:text="Some Text" />
+
+      </LinearLayout>      
 
     </LinearLayout>
 
