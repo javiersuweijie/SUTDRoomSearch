@@ -2,7 +2,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/b1">
+    android:id="@+id/b1" >
 
     <com.example.sutdroomsearch.TouchImageView
         android:contentDescription="@string/app_name"
@@ -14,7 +14,8 @@
         android:id="@+id/search_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Search" />
+        android:hint="Search"
+        android:focusable="false" />
 
     <LinearLayout
       android:layout_width="match_parent"

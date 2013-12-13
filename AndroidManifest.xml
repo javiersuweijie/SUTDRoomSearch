@@ -27,7 +27,8 @@
         </activity>
         <activity
             android:name="com.example.sutdroomsearch.SearchActivity"
-            android:label="@string/title_activity_search" >
+            android:label="@string/title_activity_search"
+            android:theme="@style/FullscreenTheme" >
         </activity>
     </application>
 
