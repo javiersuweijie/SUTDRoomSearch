@@ -44,7 +44,10 @@ public class MapActivity extends MainActivity{
 			@Override
 			public void onClick(View v) {
 				TouchImageView map = (TouchImageView) findViewById(R.id.map);
-				map.setImageResource(R.drawable.east_2nd);
+				BitmapFactory.Options options = new BitmapFactory.Options();
+				options.inSampleSize = 2;
+				Bitmap img = BitmapFactory.decodeResource(getResources(), R.drawable.east_2nd, options);
+				map.setImageBitmap(img);
 				Toast.makeText(getApplicationContext(), "Click on button 1", Toast.LENGTH_LONG).show();
 			}
 		});
@@ -53,7 +56,10 @@ public class MapActivity extends MainActivity{
 			@Override
 			public void onClick(View v) {
 				TouchImageView map = (TouchImageView) findViewById(R.id.map);
-				map.setImageResource(R.drawable.east_3rd);
+				BitmapFactory.Options options = new BitmapFactory.Options();
+				options.inSampleSize = 2;
+				Bitmap img = BitmapFactory.decodeResource(getResources(), R.drawable.east_3rd, options);
+				map.setImageBitmap(img);
 				Toast.makeText(getApplicationContext(), "Click on button 2", Toast.LENGTH_LONG).show();
 			}
 		});
@@ -62,7 +68,10 @@ public class MapActivity extends MainActivity{
 			@Override
 			public void onClick(View v) {
 				TouchImageView map = (TouchImageView) findViewById(R.id.map);
-				map.setImageResource(R.drawable.east_4th);
+				BitmapFactory.Options options = new BitmapFactory.Options();
+				options.inSampleSize = 2;
+				Bitmap img = BitmapFactory.decodeResource(getResources(), R.drawable.east_4th, options);
+				map.setImageBitmap(img);
 				Toast.makeText(getApplicationContext(), "Click on button 3", Toast.LENGTH_LONG).show();
 			}
 		});
