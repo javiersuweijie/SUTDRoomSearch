@@ -31,8 +31,22 @@ public class MapActivity extends Activity {
 		map.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
 		showL2Map(map);
 		map.setMaxZoom(8f);
+		handleIntentExtras();
 	}
-
+	
+	/**
+	 * Finds the person and the location associated with room number from search.
+	 */
+	public void handleIntentExtras() {
+		String room = this.getIntent().getStringExtra("room_number");
+		if(room != null) {
+			Location location = Location.getLocationByName(room,getApplicationContext());
+			Person person = location.person;
+			highlightRoom(location);
+			showPersonInfo(person);
+		}
+	}
+	
 	/**
 	 * Show level 2 map
 	 * @param view
@@ -100,16 +114,16 @@ public class MapActivity extends Activity {
 
 		// Map tap coordinates to room/person
 		
-//		Location room = Location.findClosestLocationTo(pts[0], pts[1], this.level, this.getApplicationContext());
-//		Person person = room.person;
-//
-//		if (room != null && person != null) {
-//			// Highlight room
-//			highlightRoom(room);
-//
-//			// Show person info
-//			showPersonInfo(person);
-//		}
+		Location room = Location.findClosestLocationTo(pts[0], pts[1], this.level, this.getApplicationContext());
+		Person person = room.person;
+
+		if (room != null && person != null) {
+			// Highlight room
+			highlightRoom(room);
+
+			// Show person info
+			showPersonInfo(person);
+		}
 	}
 
 	/**
@@ -117,7 +131,8 @@ public class MapActivity extends Activity {
 	 * @param id: id of room to highlight
 	 */
 	public void highlightRoom(Location room) {
-
+		TouchImageView mapView = (TouchImageView) findViewById(R.id.map); 
+		mapView.movePinRelative(room.x, room.y);
 	}
 
 	/**

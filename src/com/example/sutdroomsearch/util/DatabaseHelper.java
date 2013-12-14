@@ -182,6 +182,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		return null;
 	}
 
+	public String[] getRoomByName(String s) {
+		String rawQuery = "SELECT * FROM locations WHERE rname LIKE "+"\"%"+s+"%\";";
+		Cursor cu =  db.rawQuery(rawQuery, null);
+		String[] result = new String[6];
+		if (cu.moveToFirst()) {
+			result[0] = cu.getString(0);
+			result[1] = cu.getString(1);
+			result[2] = cu.getString(2);
+			result[3] = cu.getString(3);
+			result[4] = cu.getString(4);
+			result[5] = cu.getString(5);
+		}
+		return result;
+		
+	}
+
 	public String[] getRoomById(int i) {
 		Cursor cu = db.rawQuery("SELECT _id,xcoord,ycoord,level,rname,user_id FROM locations WHERE _id="+i, null);
 		Cursor cu2 = db.rawQuery("SELECT _id FROM people WHERE location_id="+i, null);

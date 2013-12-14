@@ -267,6 +267,12 @@ public class TouchImageView extends ImageView {
 		PointF centerPoint = new PointF((float) viewWidth/2, (float) viewHeight/2);
 		pin.setPosition(x, y, centerPoint, centerFocus, saveScale);
 	}
+
+	public void movePinRelative(float x, float y) {
+		float[] points = {x,y};
+		matrix.mapPoints(points);
+		movePin(points[0], points[1]);
+	}
 	
 	public ZoomablePinView getPin() {
 		return pin;

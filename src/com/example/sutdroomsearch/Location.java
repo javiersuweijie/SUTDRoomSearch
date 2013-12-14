@@ -76,6 +76,19 @@ public class Location {
 		return location;
 	}
 
+<<<<<<< HEAD
+=======
+	public static Location getLocationById(int id, Context m) {
+		String[] room = DatabaseHelper.getInstance(m).getRoomById(id);
+		return parseLocation(room,m);
+	}
+
+	public static Location getLocationByName(String name, Context m) {
+		String[] room = DatabaseHelper.getInstance(m).getRoomByName(name);
+		return parseLocation(room,m);
+	}
+
+>>>>>>> Added Highlight functionality
 	/**
 	 * Get the distance between two points.
 	 */
