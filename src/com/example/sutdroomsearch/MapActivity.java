@@ -1,10 +1,14 @@
 package com.example.sutdroomsearch;
 
+import com.caverock.androidsvg.SVG;
+import com.caverock.androidsvg.SVGParseException;
+
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.PictureDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,7 +16,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-public class MapActivity extends Activity{
+public class MapActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_map);
@@ -23,8 +27,9 @@ public class MapActivity extends Activity{
 		
 		// Display level 2 map by default
 		TouchImageView map = (TouchImageView) findViewById(R.id.map);
+		map.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
 		showL2Map(map);
-		map.setMaxZoom(4f);
+		map.setMaxZoom(8f);
 	}
 
 	/**
@@ -33,10 +38,12 @@ public class MapActivity extends Activity{
 	 */
 	public void showL2Map(View view) {
 		TouchImageView map = (TouchImageView) findViewById(R.id.map);
-		BitmapFactory.Options options = new BitmapFactory.Options();
-		options.inSampleSize = 2;
-		Bitmap img = BitmapFactory.decodeResource(getResources(), R.drawable.east_2nd, options);
-		map.setImageBitmap(img);
+
+		try {
+			SVG svg = SVG.getFromResource(this, R.drawable.level_2);
+			Drawable drawable = new PictureDrawable(svg.renderToPicture());
+			map.setImageDrawable(drawable);			
+		} catch (SVGParseException e) { }
 
 		// TODO: highlight button to show that this is the current map
 	}
@@ -47,10 +54,12 @@ public class MapActivity extends Activity{
 	 */
 	public void showL3Map(View view) {
 		TouchImageView map = (TouchImageView) findViewById(R.id.map);
-		BitmapFactory.Options options = new BitmapFactory.Options();
-		options.inSampleSize = 2;
-		Bitmap img = BitmapFactory.decodeResource(getResources(), R.drawable.east_3rd, options);
-		map.setImageBitmap(img);
+		
+		try {
+			SVG svg = SVG.getFromResource(this, R.drawable.level_3);
+			Drawable drawable = new PictureDrawable(svg.renderToPicture());
+			map.setImageDrawable(drawable);			
+		} catch (SVGParseException e) { }
 
 		// TODO: highlight button to show that this is the current map
 	}
@@ -61,10 +70,12 @@ public class MapActivity extends Activity{
 	 */
 	public void showL4Map(View view) {
 		TouchImageView map = (TouchImageView) findViewById(R.id.map);
-		BitmapFactory.Options options = new BitmapFactory.Options();
-		options.inSampleSize = 2;
-		Bitmap img = BitmapFactory.decodeResource(getResources(), R.drawable.east_4th, options);
-		map.setImageBitmap(img);
+
+		try {
+			SVG svg = SVG.getFromResource(this, R.drawable.level_4);
+			Drawable drawable = new PictureDrawable(svg.renderToPicture());
+			map.setImageDrawable(drawable);			
+		} catch (SVGParseException e) { }
 
 		// TODO: highlight button to show that this is the current map
 	}
