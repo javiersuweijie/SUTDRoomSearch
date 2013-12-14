@@ -95,8 +95,8 @@ public class MapActivity extends Activity {
 		Log.d("Info", "Mapped to real image: " + pts[0] + ", " + pts[1]);
 
 		// Map tap coordinates to room/person
-		int roomId = 0;
-		int personId = 0;
+		int roomId = 1;
+		int personId = 1;
 
 		if (roomId != 0 && personId != 0) {
 			// Highlight room
