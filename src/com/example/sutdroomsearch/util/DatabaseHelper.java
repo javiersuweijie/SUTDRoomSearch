@@ -5,13 +5,18 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+
+import com.example.sutdroomsearch.Recommendation;
 
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.text.GetChars;
 import android.util.Log;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
@@ -21,6 +26,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	private static final int DATABASE_VERSION = 1;
 	private final Context myContext;
 	private SQLiteDatabase db;
+	private ArrayList<Recommendation> reco_list;
 	 
 	public static DatabaseHelper getInstance(Context context) {    
 	    // Use the application context, which will ensure that you 
@@ -65,23 +71,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		String myPath = DB_PATH+DB_NAME;
 		File dbFile = new File(myPath);
 		return dbFile.exists();
-		/*
-		try {
-			checkDB = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READONLY);
-		} catch (SQLException e) {
-			//database does not exist yet.
-			Log.i("Database", "Database does not exist yet");
-		}
-		if (checkDB != null) {
-			checkDB.close();
-		}
-		return checkDB !=null ? true:false;
-		*/
 	}
 	
 	private void copyDataBase() throws IOException {
-		Log.i("Database", "Copying Database");
-		Log.i("Database", Arrays.toString(myContext.getAssets().list("")));
 
 		InputStream input=null;
 		try {
@@ -128,7 +120,75 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		// TODO Auto-generated method stub
 	}
 	
-	public Cursor getPerson(int id) {
-		return db.query("people", new String[] {"_id, name, location_id"},"_id=?",new String[] {String.valueOf(id)},null,null,null,null);
+	public ArrayList<Recommendation> getAllReco() {
+		if (reco_list != null) return reco_list;
+		ArrayList<Recommendation> rlist = new ArrayList<Recommendation>();
+		Recommendation r;
+		Cursor room_name = db.rawQuery("SELECT rname,user_id FROM locations", null);
+		
+		if (room_name.moveToFirst()) {
+			do {
+				Cursor user = db.rawQuery("SELECT name FROM people WHERE _id="+room_name.getString(1),null);
+				if (user.moveToFirst()) {
+					r = new Recommendation(user.getString(0),room_name.getString(0));
+				}
+				else {
+					r = new Recommendation(room_name.getString(0));
+				}
+				rlist.add(r);
+			} while (room_name.moveToNext());
+		}
+		return rlist;
+	}
+	
+	public String[] getPerson(int id) {
+		Cursor cu = db.rawQuery("SELECT _id,name,position,email,number,location_id FROM people WHERE _id="+id, null);
+		String[] result = new String[6];
+		if (cu.moveToFirst()) {
+			result[0] = cu.getString(0);
+			result[1] = cu.getString(1);
+			result[2] = cu.getString(2);
+			result[3] = cu.getString(3);
+			result[4] = cu.getString(4);
+			result[5] = cu.getString(5)==null?"-1": cu.getString(5);
+			return result;
+		}
+		return null;
+	}
+	
+	public Cursor getPersonByName(String s) {
+		String rawQuery = "SELECT * FROM people WHERE name LIKE "+"\"%"+s+"%\";";
+		return db.rawQuery(rawQuery, null);
+	}
+
+	public String[] getRoomById(int i) {
+		Cursor cu = db.rawQuery("SELECT _id,xcoord,ycoord,level,rname,user_id FROM locations WHERE _id="+i, null);
+		Cursor cu2 = db.rawQuery("SELECT _id FROM people WHERE location_id="+i, null);
+		String[] result = new String[6];
+		if (cu.moveToFirst()) {
+			result[0] = cu.getString(0);
+			result[1] = cu.getString(1);
+			result[2] = cu.getString(2);
+			result[3] = cu.getString(3);
+			result[4] = cu.getString(4);
+			result[5] = cu2.moveToFirst()?cu2.getString(0):"-1";
+			return result;
+		}
+		return null;
+	}
+	
+	public ArrayList<String[]> getAllRooms() {
+		Cursor c = db.rawQuery("SELECT _id,xcoord,ycoord FROM locations", null);
+		ArrayList<String[]> al = new ArrayList<String[]>();
+		if (c.moveToFirst()) {
+			do {
+				String[] each = new String[3];
+				each[0] = c.getString(0);
+				each[1] = c.getString(1);
+				each[2] = c.getString(2);
+				al.add(each);
+			} while (c.moveToNext());
+		}
+		return al;
 	}
 }
