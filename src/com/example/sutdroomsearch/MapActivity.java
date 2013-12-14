@@ -21,11 +21,8 @@ public class MapActivity extends Activity{
 		info_pane.setVisibility(View.GONE);
 		
 		// Display level 2 map by default
-		BitmapFactory.Options options = new BitmapFactory.Options();
-		options.inSampleSize = 2;
-		Bitmap img = BitmapFactory.decodeResource(getResources(), R.drawable.east_2nd, options);
 		TouchImageView map = (TouchImageView) findViewById(R.id.map);
-		map.setImageBitmap(img);
+		showL2Map(map);
 		map.setMaxZoom(4f);
 	}
 
