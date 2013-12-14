@@ -86,12 +86,14 @@ public class MapActivity extends Activity{
 		// Map tap coordinates to room/person
 		int roomId = 0;
 		int personId = 0;
-		
-		// Highlight room
-		highlightRoom(roomId);
 
-		// Show person info
-		showPersonInfo(personId);
+		if (roomId != 0 && personId != 0) {
+			// Highlight room
+			highlightRoom(roomId);
+
+			// Show person info
+			showPersonInfo(personId);
+		}
 	}
 
 	/**
