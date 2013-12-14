@@ -31,3 +31,6 @@ proguard/
 *.ipr
 *.iws
 .idea/
+
+#vim stuff
+*.swp
