@@ -30,7 +30,7 @@ public class MapActivity extends Activity {
 		TouchImageView map = (TouchImageView) findViewById(R.id.map);
 		map.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
 		showL2Map(map);
-		map.setMaxZoom(8f);
+		map.setMaxZoom(20f);
 		handleIntentExtras();
 	}
 	
@@ -117,11 +117,11 @@ public class MapActivity extends Activity {
 		Location room = Location.findClosestLocationTo(pts[0], pts[1], this.level, this.getApplicationContext());
 		Person person = room.person;
 
-		if (room != null && person != null) {
+		if (room != null) {
 			// Highlight room
 			highlightRoom(room);
 
-			// Show person info
+			if(person != null) // Show person info
 			showPersonInfo(person);
 		}
 	}
@@ -140,13 +140,14 @@ public class MapActivity extends Activity {
 	 * @param id: id of person's info to display
 	 */
 	public void showPersonInfo(Person person) {
+		if(person == null) return;
 		// Set name
 		TextView info_name = (TextView) findViewById(R.id.info_name);
 		info_name.setText(person.name);
 
 		// Set room
 		TextView info_room = (TextView) findViewById(R.id.info_room);
-		info_name.setText(person.location.number);
+		info_room.setText(person.position);
 		
 		// Set phone number
 		TextView info_phone = (TextView) findViewById(R.id.info_phone);

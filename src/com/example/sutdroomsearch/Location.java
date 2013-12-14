@@ -57,10 +57,6 @@ public class Location {
 	 * @param data
 	 * @return
 	 */
-	public static Location getLocationById(int id, Context m) {
-		String[] data = DatabaseHelper.getInstance(m).getRoomById(id);
-		return parseLocation(data, m);
-	}
 	
 	public static Location parseLocation(String[] data, Context m) {
 		Location location = new Location();
@@ -71,13 +67,14 @@ public class Location {
 		location.y = Integer.parseInt(data[2]);
 		location.level = Integer.parseInt(data[3]);
 		location.number = data[4];
-		location.person = Person.getPersonById(Integer.parseInt(data[5]), m);
-		location.person.location = location; // satisfying the invariant.
+		int personId = Integer.parseInt(data[5]);
+		if(personId != -1) {
+			location.person = Person.getPersonById(personId,m);
+			location.person.location = location; // satisfying the invariant.
+		}
 		return location;
 	}
 
-<<<<<<< HEAD
-=======
 	public static Location getLocationById(int id, Context m) {
 		String[] room = DatabaseHelper.getInstance(m).getRoomById(id);
 		return parseLocation(room,m);
@@ -88,7 +85,6 @@ public class Location {
 		return parseLocation(room,m);
 	}
 
->>>>>>> Added Highlight functionality
 	/**
 	 * Get the distance between two points.
 	 */
