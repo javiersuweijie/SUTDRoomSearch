@@ -9,7 +9,7 @@
 		android:id="@+id/map"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		android:onClick="showRoomInfo" />
+		android:onClick="selectRoom" />
 
 	<!-- Search Bar -->
 	<LinearLayout
@@ -26,14 +26,15 @@
 			android:layout_weight="1"
 			android:hint="Search"
 			android:focusable="false"
-			android:onClick="startSearch" />
+			android:onClick="switchToSearch" />
 
 		<!-- List Button: Return to list of search results -->
 		<Button
 			android:id="@+id/search_list"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:text="List" />
+			android:text="List"
+			android:onClick="switchToSearch" />
 
 		<!-- Clear Button: Clear current search -->
 		<Button
