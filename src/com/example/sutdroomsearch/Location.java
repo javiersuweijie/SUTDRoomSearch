@@ -1,5 +1,7 @@
 package com.example.sutdroomsearch;
 
+import java.util.ArrayList;
+
 import com.example.sutdroomsearch.util.DatabaseHelper;
 import android.content.Context;
 
@@ -7,6 +9,10 @@ import android.content.Context;
  * Location Model
  * 
  * This model wraps around Location related database entries
+ * 
+ * Class invariant:
+ * 
+ * location.person.location == location 
  * @author Swayam
  *
  */
@@ -15,7 +21,8 @@ public class Location {
 	int id;
 	float x;
 	float y;
-	float number;
+	String number;
+	float level;
 	Person person;
 
 	/**
@@ -28,29 +35,45 @@ public class Location {
 	 */
 	
 	public static Location findClosestLocationTo(float x, float y, int level, Context m) {
-		int[][] rooms = DatabaseHelper.getInstance(m).getAllRooms();
+		ArrayList<String[]> rooms = DatabaseHelper.getInstance(m).getAllRooms();
 		double smallest_distance = Double.MAX_VALUE; 		//distance of the closest point
-		int location_id = -1;
-		for(int i =  0 ; i < rooms.length; i++) {
-			int[] room = rooms[0];
-			if(room[3] != level) continue;
-			double distance = getDistance(x,y,room[1],room[2]);
+		String[] closest_room = null;
+		for(String[] room:rooms) 
+		{
+			if(Integer.parseInt(room[3]) != level) continue; // This room is not on the same level!
+
+			double distance = getDistance(x,y,Integer.parseInt(room[1]),Integer.parseInt(room[2]));
 			if (distance < smallest_distance) {
-				location_id = room[0];
+				closest_room = room;
 				smallest_distance = distance;
 			}
 		}
 		
-		return getLocationById(location_id, m);
+		return parseLocation(closest_room, m);
 	}
 	
-	public static Location getLocationById(int id, Context m) {
+	/**
+	 * Given an array of Strings from the Database, constructs a database model
+	 * @param data
+	 * @return
+	 */
+	public static Location parseLocation(String[] data, Context m) {
 		Location location = new Location();
-		int[] room = DatabaseHelper.getInstance(m).getRoomById(id);
-		if(room[5] != -1) {	// room[4] specifies the user id associated with the location
-			location.person = Person.getPersonById(room[4], m);
-		}
+		location.id = Integer.parseInt(data[0]);
+		if(location.id == -1) return null;
+
+		location.x = Integer.parseInt(data[1]);
+		location.y = Integer.parseInt(data[2]);
+		location.level = Integer.parseInt(data[3]);
+		location.number = data[4];
+		location.person = Person.getPersonById(Integer.parseInt(data[5]), m);
+		location.person.location = location; // satisfying the invariant.
 		return location;
+	}
+
+	public static Location getLocationById(int id, Context m) {
+		String[] room = DatabaseHelper.getInstance(m).getRoomById(id);
+		return parseLocation(room,m);
 	}
 
 	/**

@@ -16,6 +16,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class MapActivity extends Activity {
+	private int level;
+
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_map);
@@ -36,6 +38,7 @@ public class MapActivity extends Activity {
 	 * @param view
 	 */
 	public void showL2Map(View view) {
+		this.level = 2;
 		TouchImageView map = (TouchImageView) findViewById(R.id.map);
 
 		try {
@@ -52,6 +55,7 @@ public class MapActivity extends Activity {
 	 * @param view
 	 */
 	public void showL3Map(View view) {
+		this.level = 3;
 		TouchImageView map = (TouchImageView) findViewById(R.id.map);
 		
 		try {
@@ -68,6 +72,7 @@ public class MapActivity extends Activity {
 	 * @param view
 	 */
 	public void showL4Map(View view) {
+		this.level = 4;
 		TouchImageView map = (TouchImageView) findViewById(R.id.map);
 
 		try {
@@ -94,15 +99,16 @@ public class MapActivity extends Activity {
 		Log.d("Info", "Mapped to real image: " + pts[0] + ", " + pts[1]);
 
 		// Map tap coordinates to room/person
-		int roomId = 1;
-		int personId = 1;
+		
+		Location room = Location.findClosestLocationTo(mapView.last.x, mapView.last.y, this.level, this.getApplicationContext());
+		Person person = room.person;
 
-		if (roomId != 0 && personId != 0) {
+		if (room != null && person != null) {
 			// Highlight room
-			highlightRoom(roomId);
+			highlightRoom(room);
 
 			// Show person info
-			showPersonInfo(personId);
+			showPersonInfo(person);
 		}
 	}
 
@@ -110,7 +116,7 @@ public class MapActivity extends Activity {
 	 * Highlight a room on the map
 	 * @param id: id of room to highlight
 	 */
-	public void highlightRoom(int id) {
+	public void highlightRoom(Location room) {
 
 	}
 
@@ -118,18 +124,22 @@ public class MapActivity extends Activity {
 	 * Display a person's info in details pane
 	 * @param id: id of person's info to display
 	 */
-	public void showPersonInfo(int id) {
+	public void showPersonInfo(Person person) {
 		// Set name
 		TextView info_name = (TextView) findViewById(R.id.info_name);
+		info_name.setText(person.name);
 
 		// Set room
 		TextView info_room = (TextView) findViewById(R.id.info_room);
+		info_name.setText(person.location.number);
 		
 		// Set phone number
 		TextView info_phone = (TextView) findViewById(R.id.info_phone);
+		info_phone.setText(person.number);
 		
 		// Set e-mail address
 		TextView info_email = (TextView) findViewById(R.id.info_email);
+		info_email.setText(person.email);
 		
 		// Show info pane
 		LinearLayout info_pane = (LinearLayout) findViewById(R.id.info_pane);
