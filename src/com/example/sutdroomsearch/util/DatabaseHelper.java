@@ -141,7 +141,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		return rlist;
 	}
 	
-	public String[] getPerson(int id) {
+	public String[] getPersonById(int id) {
 		Cursor cu = db.rawQuery("SELECT _id,name,position,email,number,location_id FROM people WHERE _id="+id, null);
 		String[] result = new String[6];
 		if (cu.moveToFirst()) {
