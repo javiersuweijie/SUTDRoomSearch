@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -121,6 +122,15 @@ public class MapActivity extends Activity{
 		// Show info pane
 		LinearLayout info_pane = (LinearLayout) findViewById(R.id.info_pane);
 		info_pane.setVisibility(View.VISIBLE);
+	}
+
+	public void emailPerson(View view) {
+		TextView textView = (TextView) view;
+		String uriStr = "mailto:" + textView.getText().toString();
+		Uri uri = Uri.parse(uriStr);
+		Intent i = new Intent(Intent.ACTION_SENDTO);
+		i.setData(uri);
+		startActivity(Intent.createChooser(i, "Send e-mail"));
 	}
 
 	/**
