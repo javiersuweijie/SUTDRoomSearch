@@ -100,16 +100,16 @@ public class MapActivity extends Activity {
 
 		// Map tap coordinates to room/person
 		
-		Location room = Location.findClosestLocationTo(mapView.last.x, mapView.last.y, this.level, this.getApplicationContext());
-		Person person = room.person;
-
-		if (room != null && person != null) {
-			// Highlight room
-			highlightRoom(room);
-
-			// Show person info
-			showPersonInfo(person);
-		}
+//		Location room = Location.findClosestLocationTo(pts[0], pts[1], this.level, this.getApplicationContext());
+//		Person person = room.person;
+//
+//		if (room != null && person != null) {
+//			// Highlight room
+//			highlightRoom(room);
+//
+//			// Show person info
+//			showPersonInfo(person);
+//		}
 	}
 
 	/**
