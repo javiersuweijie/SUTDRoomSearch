@@ -201,17 +201,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	}
 	
 	public ArrayList<String[]> getAllRooms() {
-		Cursor c = db.rawQuery("SELECT _id,xcoord,ycoord,level,rname,user_id FROM locations", null);
+		Cursor c = db.rawQuery("SELECT _id,xcoord,ycoord,level FROM locations", null);
 		ArrayList<String[]> al = new ArrayList<String[]>();
 		if (c.moveToFirst()) {
 			do {
-				String[] each = new String[3];
+				String[] each = new String[4];
 				each[0] = c.getString(0);
 				each[1] = c.getString(1);
 				each[2] = c.getString(2);
 				each[3] = c.getString(3);
-				each[4] = c.getString(4);
-				each[5] = c.getString(5).equals("null")?"-1":c.getString(5);
 				al.add(each);
 			} while (c.moveToNext());
 		}
