@@ -1,72 +1,130 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/b1" >
+	android:id="@+id/map_activity"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent" >
 
-    <com.example.sutdroomsearch.TouchImageView
-        android:contentDescription="@string/app_name"
-        android:id="@+id/map"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+	<!-- Map -->
+	<com.example.sutdroomsearch.TouchImageView
+		android:id="@+id/map"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:onClick="showRoomInfo" />
 
-    <EditText
-        android:id="@+id/search_input"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Search"
-        android:focusable="false" />
+	<!-- Search Bar -->
+	<LinearLayout
+		android:id="@+id/search_bar"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="horizontal" >
+		
+		<!-- Search Box: Enter search query -->
+		<EditText
+			android:id="@+id/search_box"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:hint="Search"
+			android:focusable="false"
+			android:onClick="startSearch" />
 
-    <LinearLayout
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:orientation="vertical"
-      android:layout_gravity="bottom" >
+		<!-- List Button: Return to list of search results -->
+		<Button
+			android:id="@+id/search_list"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="List" />
 
-      <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_gravity="left" >
-        
-        <Button
-          android:id="@+id/level2_east"
-          style="?android:attr/buttonStyleSmall"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:text="L2 East" />
+		<!-- Clear Button: Clear current search -->
+		<Button
+			android:id="@+id/search_clear"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="Clear"
+			android:onClick="clearSearch" />
 
-        <Button
-          android:id="@+id/level3_east"
-          style="?android:attr/buttonStyleSmall"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:text="L3 East" />
-        
-        <Button
-          android:id="@+id/level4_east"
-          style="?android:attr/buttonStyleSmall"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:text="L4 East" />
+	</LinearLayout>
 
-      </LinearLayout>
+	<!-- Container for level selector and details pane -->
+	<LinearLayout
+		android:layout_gravity="bottom"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="vertical" >
 
-      <LinearLayout
-        android:id="@+id/details"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_gravity="bottom" >
-        
-        <TextView
-          android:id="@+id/coords"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:text="Some Text" />
+		<!-- Level Selector -->
+		<LinearLayout
+			android:id="@+id/level_selector"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:orientation="vertical" >
+			
+			<!-- Level 2 Button: show level 2 map -->
+			<Button
+				android:id="@+id/l2_button"
+				style="?android:attr/buttonStyleSmall"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="L2"
+				android:onClick="showL2Map" />
 
-      </LinearLayout>      
+			<!-- Level 3 Button: show level 3 map -->
+			<Button
+				android:id="@+id/l3_button"
+				style="?android:attr/buttonStyleSmall"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="L3"
+				android:onClick="showL3Map" />
+			
+			<!-- Level 4 Button: show level 4 map -->
+			<Button
+				android:id="@+id/l4_button"
+				style="?android:attr/buttonStyleSmall"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="L4"
+				android:onClick="showL4Map" />
 
-    </LinearLayout>
+		</LinearLayout>
+
+		<!-- Info Pane -->
+		<LinearLayout
+			android:id="@+id/info_pane"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="vertical" >
+			
+			<!-- Name of person -->
+			<TextView
+				android:id="@+id/info_name"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:text="Name" />
+
+			<!-- Room location -->
+			<TextView
+				android:id="@+id/info_room"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:text="Room" />
+
+			<!-- Phone number -->
+			<TextView
+				android:id="@+id/info_phone"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:text="Phone" />
+
+			<!-- E-mail address -->
+			<TextView
+				android:id="@+id/info_email"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:text="Email" />
+
+		</LinearLayout>      
+
+	</LinearLayout>
 
 </FrameLayout>
