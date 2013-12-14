@@ -124,6 +124,15 @@ public class MapActivity extends Activity{
 		info_pane.setVisibility(View.VISIBLE);
 	}
 
+	public void callPerson(View view) {
+		TextView textView = (TextView) view;
+		String uriStr = "tel:" + textView.getText().toString();
+		Uri uri = Uri.parse(uriStr);
+		Intent i = new Intent(Intent.ACTION_CALL);
+		i.setData(uri);
+		startActivity(i);
+	}
+
 	public void emailPerson(View view) {
 		TextView textView = (TextView) view;
 		String uriStr = "mailto:" + textView.getText().toString();
