@@ -59,6 +59,10 @@ public class Location {
 	 */
 	public static Location getLocationById(int id, Context m) {
 		String[] data = DatabaseHelper.getInstance(m).getRoomById(id);
+		return parseLocation(data, m);
+	}
+	
+	public static Location parseLocation(String[] data, Context m) {
 		Location location = new Location();
 		location.id = Integer.parseInt(data[0]);
 		if(location.id == -1) return null;
