@@ -49,7 +49,7 @@ public class Location {
 			}
 		}
 		
-		return parseLocation(closest_room, m);
+		return getLocationById(Integer.parseInt(closest_room[0]), m);
 	}
 	
 	/**
@@ -57,7 +57,8 @@ public class Location {
 	 * @param data
 	 * @return
 	 */
-	public static Location parseLocation(String[] data, Context m) {
+	public static Location getLocationById(int id, Context m) {
+		String[] data = DatabaseHelper.getInstance(m).getRoomById(id);
 		Location location = new Location();
 		location.id = Integer.parseInt(data[0]);
 		if(location.id == -1) return null;
@@ -69,11 +70,6 @@ public class Location {
 		location.person = Person.getPersonById(Integer.parseInt(data[5]), m);
 		location.person.location = location; // satisfying the invariant.
 		return location;
-	}
-
-	public static Location getLocationById(int id, Context m) {
-		String[] room = DatabaseHelper.getInstance(m).getRoomById(id);
-		return parseLocation(room,m);
 	}
 
 	/**
