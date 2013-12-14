@@ -9,6 +9,7 @@
 		android:id="@+id/map"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
+		android:background="#FFFFFF"
 		android:onClick="selectRoom" />
 
 	<!-- Search Bar -->
@@ -94,35 +95,52 @@
 			android:id="@+id/info_pane"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:orientation="vertical" >
+			android:orientation="vertical"
+			android:background="#DD000000">
 			
 			<!-- Name of person -->
 			<TextView
 				android:id="@+id/info_name"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:text="Name" />
+				android:text="Lui Siu Hang Simon"
+				android:textSize="20sp"
+				android:textColor="#EEEEEE"
+				android:textIsSelectable="true" />
 
 			<!-- Room location -->
 			<TextView
 				android:id="@+id/info_room"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:text="Room" />
+				android:text="L3 R17 (West Wing)"
+				android:textSize="20sp"
+				android:textColor="#EEEEEE"
+				android:textIsSelectable="true" />
 
 			<!-- Phone number -->
 			<TextView
 				android:id="@+id/info_phone"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:text="Phone" />
+				android:text="64994537"
+				android:textSize="20sp"
+				android:textColor="#EEEEEE"
+				android:textIsSelectable="true"
+				android:clickable="true"
+				android:onClick="callPerson" />
 
 			<!-- E-mail address -->
 			<TextView
 				android:id="@+id/info_email"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:text="Email" />
+				android:text="simon_lui@sutd.edu.sg"
+				android:textSize="20sp"
+				android:textColor="#EEEEEE"
+				android:textIsSelectable="true"
+				android:clickable="true"
+				android:onClick="emailPerson" />
 
 		</LinearLayout>      
 
