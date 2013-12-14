@@ -40,6 +40,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 			throw new Error("Error creating database");
 		}
 	  }
+	  sInstance.openDatabase();
 	  return sInstance;
 	}
 	     
@@ -138,6 +139,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 				rlist.add(r);
 			} while (room_name.moveToNext());
 		}
+		this.close();
 		return rlist;
 	}
 	
@@ -151,14 +153,33 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 			result[3] = cu.getString(3);
 			result[4] = cu.getString(4);
 			result[5] = cu.getString(5)==null?"-1": cu.getString(5);
+			this.close();
 			return result;
 		}
+		this.close();
 		return null;
 	}
 	
-	public Cursor getPersonByName(String s) {
+	public ArrayList<String[]> getPersonByName(String s) {
 		String rawQuery = "SELECT * FROM people WHERE name LIKE "+"\"%"+s+"%\";";
-		return db.rawQuery(rawQuery, null);
+		Cursor cu = db.rawQuery(rawQuery, null);
+		ArrayList<String[]> al = new ArrayList<String[]>();
+		if (cu.moveToFirst()) {
+			do {
+			String[] result = new String[6];
+			result[0] = cu.getString(0);
+			result[1] = cu.getString(1);
+			result[2] = cu.getString(2);
+			result[3] = cu.getString(3);
+			result[4] = cu.getString(4);
+			result[5] = cu.getString(5)==null?"-1": cu.getString(5);
+			al.add(result);
+			} while (cu.moveToNext());
+			this.close();
+			return al;
+		}
+		this.close();
+		return null;
 	}
 
 	public String[] getRoomById(int i) {
@@ -172,8 +193,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 			result[3] = cu.getString(3);
 			result[4] = cu.getString(4);
 			result[5] = cu2.moveToFirst()?cu2.getString(0):"-1";
+			this.close();
 			return result;
 		}
+		this.close();
 		return null;
 	}
 	
@@ -192,6 +215,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 				al.add(each);
 			} while (c.moveToNext());
 		}
+		this.close();
 		return al;
 	}
 }

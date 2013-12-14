@@ -16,7 +16,7 @@ public class Person {
 	
 	public static Person getPersonById(int id, Context m) {
 		Person person = new Person();
-		String[] person_data = DatabaseHelper.getInstance(m).getPerson(id);
+		String[] person_data = DatabaseHelper.getInstance(m).getPersonById(id);
 		person.id = Integer.parseInt(person_data[0]); 
 		if(id == -1) return null;
 		person.name = person_data[1]; 
