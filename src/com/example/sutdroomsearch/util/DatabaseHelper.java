@@ -216,8 +216,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 		return null;
 	}
 	
-	public ArrayList<String[]> getAllRooms() {
-		Cursor c = db.rawQuery("SELECT _id,xcoord,ycoord,level FROM locations", null);
+	public ArrayList<String[]> getAllRoomsOnLevel(int level) {
+		Cursor c = db.rawQuery("SELECT _id,xcoord,ycoord,level FROM locations WHERE level = " + level, null);
 		ArrayList<String[]> al = new ArrayList<String[]>();
 		if (c.moveToFirst()) {
 			do {

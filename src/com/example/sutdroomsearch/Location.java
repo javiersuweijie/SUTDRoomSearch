@@ -35,17 +35,17 @@ public class Location {
 	 */
 	
 	public static Location findClosestLocationTo(float x, float y, int level, Context m) {
-		ArrayList<String[]> rooms = DatabaseHelper.getInstance(m).getAllRooms();
+		ArrayList<String[]> rooms = DatabaseHelper.getInstance(m).getAllRoomsOnLevel(level);
 		double smallest_distance = Double.MAX_VALUE; 		//distance of the closest point
 		String[] closest_room = null;
 		for(String[] room:rooms) 
 		{
-			if(Integer.parseInt(room[3]) != level) continue; // This room is not on the same level!
-
-			double distance = getDistance(x,y,Integer.parseInt(room[1]),Integer.parseInt(room[2]));
-			if (distance < smallest_distance) {
-				closest_room = room;
-				smallest_distance = distance;
+			if(!(room[1] == null || room[2] == null)) {
+				double distance = getDistance(x,y,Integer.parseInt(room[1]),Integer.parseInt(room[2]));
+				if (distance < smallest_distance) {
+					closest_room = room;
+					smallest_distance = distance;
+				}
 			}
 		}
 		
