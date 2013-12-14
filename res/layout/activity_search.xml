@@ -1,4 +1,4 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -6,12 +6,96 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
     tools:context=".SearchActivity" >
 
-    <EditText
-        android:id="@+id/search_input"
+    <!-- Search Bar -->
+    <LinearLayout
+        android:id="@+id/search_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Search" />
+        android:orientation="horizontal" >
+        
+        <!-- Search Box: Enter search query -->
+        <EditText
+            android:id="@+id/search_box"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="Search"
+            android:focusable="false"
+            android:onClick="switchToSearch" />
 
-</RelativeLayout>
+        <!-- List Button: Return to list of search results -->
+        <Button
+            android:id="@+id/search_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="List"
+            android:onClick="switchToSearch" />
+
+        <!-- Clear Button: Clear current search -->
+        <Button
+            android:id="@+id/search_clear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Clear"
+            android:onClick="clearSearch" />
+
+    </LinearLayout>
+
+    <!-- Search Help -->
+    <LinearLayout
+        android:id="@+id/search_help"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="#DD000000">
+
+        <TextView
+            android:id="@+id/help_heading"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Possible search inputs"
+            android:textSize="20sp"
+            android:textIsSelectable="true" />        
+        
+        <!-- Name of person -->
+        <TextView
+            android:id="@+id/help_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Name: e.g. Simon"
+            android:textSize="18sp" />
+
+        <!-- Room location -->
+        <TextView
+            android:id="@+id/help_room"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Location: e.g. L3 R17"
+            android:textSize="18sp" />
+
+        <!-- Phone number -->
+        <TextView
+            android:id="@+id/help_phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Phone: e.g. 64994537"
+            android:textSize="18sp" />
+
+        <!-- E-mail address -->
+        <TextView
+            android:id="@+id/help_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="E-mail: e.g. simon_lui@sutd.edu.sg"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
+    <!-- Search Suggestions -->
+
+    <!-- Search Results -->
+
+</LinearLayout>

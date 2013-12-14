@@ -10,6 +10,12 @@ public class SearchActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_search);
 
+		// TODO: grab search value from intent and fill search box
+		// TODO: hide search suggestions by default
+		// TODO: hide search results by default
+		
+		// TODO: after typing, show suggestions and hide search help
+		// TODO: after user hits enter, hide suggestions and show search results
 	}
 
 }
