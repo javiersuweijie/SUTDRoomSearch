@@ -92,7 +92,8 @@ public class MapActivity extends Activity {
 		try {
 			SVG svg = SVG.getFromResource(this, R.drawable.level_4);
 			Drawable drawable = new PictureDrawable(svg.renderToPicture());
-			map.setImageDrawable(drawable);			
+			map.setImageDrawable(drawable);	
+			map.movePinRelative(335, 736);
 		} catch (SVGParseException e) { }
 
 		// TODO: highlight button to show that this is the current map
@@ -123,6 +124,12 @@ public class MapActivity extends Activity {
 
 			if(person != null) // Show person info
 			showPersonInfo(person);
+			
+			//clear out info panel when there is no one use the room
+			if(person==null){
+				LinearLayout info_pane = (LinearLayout) findViewById(R.id.info_pane);
+				info_pane.setVisibility(View.INVISIBLE);
+			}
 		}
 	}
 
