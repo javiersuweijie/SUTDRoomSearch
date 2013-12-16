@@ -93,7 +93,6 @@ public class MapActivity extends Activity {
 			SVG svg = SVG.getFromResource(this, R.drawable.level_4);
 			Drawable drawable = new PictureDrawable(svg.renderToPicture());
 			map.setImageDrawable(drawable);	
-			map.movePinRelative(335, 736);
 		} catch (SVGParseException e) { }
 
 		// TODO: highlight button to show that this is the current map
