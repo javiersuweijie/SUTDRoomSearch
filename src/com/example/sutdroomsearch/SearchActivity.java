@@ -1,5 +1,9 @@
 package com.example.sutdroomsearch;
 
+import java.util.ArrayList;
+
+import com.example.sutdroomsearch.util.DatabaseHelper;
+
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -13,17 +17,15 @@ public class SearchActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_search);
-
-		Recommendation[] locations = {
-				new Recommendation("L1-S18"),
-				new Recommendation("L4-R25"),
-				new Recommendation("L2-S21"),
-				new Recommendation("Simon Lui","L4-R3"),
-				new Recommendation("Man Cheung","L3-R16"),
-				new Recommendation("Peter Loh","L1-R47"),
-				new Recommendation("Simon Hui","L2-S43"),
-				new Recommendation("Wan Cheung","L3-S35")
-		};
+		
+		DatabaseHelper dbh = DatabaseHelper.getInstance(getApplicationContext());
+		ArrayList<String[]> reco_list = dbh.getAllReco();
+		Recommendation[] locations = new Recommendation[reco_list.size()];
+		int i=0;
+		for (String[] rec:reco_list) {
+			locations[i] = new Recommendation(rec[0], rec[1], rec[2], rec[3]);
+			i++;
+		}
 		
 		AllMatchArrayAdapter<Recommendation> adapter = new AllMatchArrayAdapter<Recommendation>(this, android.R.layout.simple_dropdown_item_1line,locations);
         AutoCompleteTextView autoComplete = (AutoCompleteTextView)findViewById(R.id.search_box);  
