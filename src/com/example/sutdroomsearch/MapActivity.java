@@ -38,10 +38,11 @@ public class MapActivity extends Activity {
 	 * Finds the person and the location associated with room number from search.
 	 */
 	public void handleIntentExtras() {
-		String room = this.getIntent().getStringExtra("room_number");
-		if(room != null) {
-			Location location = Location.getLocationByName(room,getApplicationContext());
+		Integer room = this.getIntent().getIntExtra("room_id",-1);
+		if(room != -1) {
+			Location location = Location.getLocationById(room,getApplicationContext());
 			Person person = location.person;
+			
 			highlightRoom(location);
 			showPersonInfo(person);
 		}

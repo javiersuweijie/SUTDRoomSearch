@@ -136,11 +136,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	public ArrayList<String[]> getAllReco() {
 		if (reco_list != null) return reco_list;
 		ArrayList<String[]> rlist = new ArrayList<String[]>();
-		String[] s = new String[4];
 		Cursor room_name = db.rawQuery("SELECT _id,rname FROM locations", null);
 		if (room_name.moveToFirst()) {
 			do {
 				Cursor user = db.rawQuery("SELECT _id,name FROM people WHERE location_id="+room_name.getString(0),null);
+				String[] s = new String[4];
 				if (user.moveToFirst()) {
 					s[0] = user.getString(0);
 					s[1] = user.getString(1);

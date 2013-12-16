@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.example.sutdroomsearch.util.DatabaseHelper;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
@@ -46,14 +47,14 @@ public class SearchActivity extends Activity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             	AutoCompleteTextView autoComplete = (AutoCompleteTextView)findViewById(R.id.search_box);
 				AllMatchArrayAdapter<Recommendation> adapter = (AllMatchArrayAdapter<Recommendation>)autoComplete.getAdapter();
-				sendMessage(adapter.getItem(position).toString());
+				sendMessage(adapter.getItem(position).room_id);
             }
         });
 	}
 
-	public void sendMessage(String message) {
+	public void sendMessage(int message) {
 		Intent i = new Intent(SearchActivity.this, MapActivity.class);
-		i.putExtra("room_number", message);
+		i.putExtra("room_id", message);
 		startActivity(i);
 	}
 	

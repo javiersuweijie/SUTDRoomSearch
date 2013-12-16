@@ -265,13 +265,20 @@ public class TouchImageView extends ImageView {
 	
 	public void movePin(float x, float y) {
 		PointF centerPoint = new PointF((float) viewWidth/2, (float) viewHeight/2);
+
 		pin.setPosition(x, y, centerPoint, centerFocus, saveScale);
+		Log.i("Pin",pin.getPositionInPixels().x+" "+pin.getPositionInPixels().y+" "+pin.getVisibility());
 	}
 
 	public void movePinRelative(float x, float y) {
+		if (pin==null) {
+			this.addPin();
+			this.measure(480,800);
+		}
 		float[] points = {x,y};
 		matrix.mapPoints(points);
 		movePin(points[0], points[1]);
+		Log.i("Map","moved pin to "+points[0]+", "+points[1]);
 	}
 	
 	public ZoomablePinView getPin() {
