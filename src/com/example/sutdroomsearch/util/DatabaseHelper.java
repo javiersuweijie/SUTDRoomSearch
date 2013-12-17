@@ -157,6 +157,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 			} while (room_name.moveToNext());
 		}
 		this.close();
+		reco_list=rlist;
 		return rlist;
 	}
 	
