@@ -22,17 +22,29 @@ def populate():
       if row[0]=="":
         continue
       if len(row[3])==4:
-        row[3]='6499'+row[4]
-      location_id=get_location_id(row[4],row[5])
-      insert_people(c,row,id,location_id)
-
+        row[3]='6499 '+row[3]
+        person_id = get_person_id(row[0])
+        print row[0],row[3],person_id
+        update_phone(row,person_id)
       id+=1;
   conn.commit()
+  check() 
   c.close()
 
+def update_phone(row,id):
+  conn.cursor().execute("""update people set number='%s' where _id='%s'"""%(row[3],id))
 
 def link_room_to_person(roomid, personid):
   c = conn.cursor().execute("""UPDATE locations SET user_id='%s' WHERE _id='%s'"""%(personid,roomid))
+
+def get_person_id(name):
+  if name == "" or not name:
+    return ""
+  c = conn.cursor().execute("""select _id from people where name='%s'"""%name).fetchone()
+  if not c:
+    return
+  else:
+    return c[0]
 
 def get_location_id(rname,level):
   if rname == "" or not rname:
@@ -49,6 +61,11 @@ def insert_people(c,row,id,location_id):
   c.execute("""insert into people(name,position,email,number,location_id,_id) 
                values (?,?,?,?,?,?)""",insert)
 
+def check():
+  c=conn.cursor().execute("""SELECT * FROM people WHERE number like "6499 4504" """)
+  print c.fetchone()
+  c=conn.cursor().execute("""SELECT * FROM people WHERE _id=280 """)
+  print c.fetchone()
 
 populate()
 
