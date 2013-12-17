@@ -263,6 +263,11 @@ public class TouchImageView extends ImageView {
 		parent.addView(pin);
 	}
 	
+	public void hidePin() {
+		if (pin!=null)
+		this.movePin(-100, -100);
+	}
+	
 	public void movePin(float x, float y) {
 		PointF centerPoint = new PointF((float) viewWidth/2, (float) viewHeight/2);
 
