@@ -29,8 +29,7 @@ public class MapActivity extends Activity {
 		// Display level 2 map by default
 		TouchImageView map = (TouchImageView) findViewById(R.id.map);
 		map.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
-		showL2Map(map);
-		map.setMaxZoom(20f);
+
 		handleIntentExtras();
 	}
 	
@@ -39,13 +38,28 @@ public class MapActivity extends Activity {
 	 */
 	public void handleIntentExtras() {
 		Integer room = this.getIntent().getIntExtra("room_id",-1);
+		TouchImageView map = (TouchImageView) findViewById(R.id.map);
 		if(room != -1) {
 			Location location = Location.getLocationById(room,getApplicationContext());
 			Person person = location.person;
-			
+			switch ((int)location.level) {
+			case 2:
+				showL2Map(map);
+				break;
+			case 3:
+				showL3Map(map);
+				break;
+			case 4:
+				showL4Map(map);
+				break;
+			default:
+				break;
+			}
 			highlightRoom(location);
 			showPersonInfo(person);
 		}
+		else showL2Map(map);
+		map.setMaxZoom(20f);
 	}
 	
 	/**
