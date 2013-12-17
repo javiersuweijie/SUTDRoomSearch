@@ -59,7 +59,11 @@ public class MapActivity extends Activity {
 		try {
 			SVG svg = SVG.getFromResource(this, R.drawable.level_2);
 			Drawable drawable = new PictureDrawable(svg.renderToPicture());
-			map.setImageDrawable(drawable);			
+			map.setImageDrawable(drawable);		
+			//clear pointer and info panel, when change to different level's map
+			map.movePinRelative(-100, -100);
+			LinearLayout info_pane = (LinearLayout) findViewById(R.id.info_pane);
+			info_pane.setVisibility(View.INVISIBLE);
 		} catch (SVGParseException e) { }
 
 		// TODO: highlight button to show that this is the current map
@@ -76,7 +80,11 @@ public class MapActivity extends Activity {
 		try {
 			SVG svg = SVG.getFromResource(this, R.drawable.level_3);
 			Drawable drawable = new PictureDrawable(svg.renderToPicture());
-			map.setImageDrawable(drawable);			
+			map.setImageDrawable(drawable);	
+			//clear pointer and info panel, when change to different level's map
+			map.movePinRelative(-100, -100);
+			LinearLayout info_pane = (LinearLayout) findViewById(R.id.info_pane);
+			info_pane.setVisibility(View.INVISIBLE);
 		} catch (SVGParseException e) { }
 
 		// TODO: highlight button to show that this is the current map
@@ -94,6 +102,10 @@ public class MapActivity extends Activity {
 			SVG svg = SVG.getFromResource(this, R.drawable.level_4);
 			Drawable drawable = new PictureDrawable(svg.renderToPicture());
 			map.setImageDrawable(drawable);	
+			//clear pointer and info panel, when change to different level's map
+			map.movePinRelative(-100, -100);
+			LinearLayout info_pane = (LinearLayout) findViewById(R.id.info_pane);
+			info_pane.setVisibility(View.INVISIBLE);
 		} catch (SVGParseException e) { }
 
 		// TODO: highlight button to show that this is the current map
