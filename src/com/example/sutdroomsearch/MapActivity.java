@@ -17,11 +17,14 @@ import android.widget.TextView;
 
 public class MapActivity extends Activity {
 	private int level;
-
+	static SVG level2=null;
+	static SVG level3=null;
+	static SVG level4=null;
+	
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_map);
 
+		setContentView(R.layout.activity_map);
 		// Hide info pane by default
 		LinearLayout info_pane = (LinearLayout) findViewById(R.id.info_pane);
 		info_pane.setVisibility(View.GONE);
@@ -67,15 +70,18 @@ public class MapActivity extends Activity {
 	 * @param view
 	 */
 	public void showL2Map(View view) {
+		long start_time = System.currentTimeMillis();
 		this.level = 2;
 		TouchImageView map = (TouchImageView) findViewById(R.id.map);
 
 		try {
-			SVG svg = SVG.getFromResource(this, R.drawable.level_2);
-			Drawable drawable = new PictureDrawable(svg.renderToPicture());
+			if (level2==null) level2 = SVG.getFromResource(this, R.drawable.level_2);
+			Log.i("Time","Time to get SVG resource: "+(System.currentTimeMillis()-start_time));
+			Drawable drawable = new PictureDrawable(level2.renderToPicture());
 			map.setImageDrawable(drawable);		
+			Log.i("Time","Time to draw SVG: "+(System.currentTimeMillis()-start_time));
 			//clear pointer and info panel, when change to different level's map
-			map.movePinRelative(-100, -100);
+			map.hidePin();
 			LinearLayout info_pane = (LinearLayout) findViewById(R.id.info_pane);
 			info_pane.setVisibility(View.INVISIBLE);
 		} catch (SVGParseException e) { }
@@ -92,11 +98,11 @@ public class MapActivity extends Activity {
 		TouchImageView map = (TouchImageView) findViewById(R.id.map);
 		
 		try {
-			SVG svg = SVG.getFromResource(this, R.drawable.level_3);
-			Drawable drawable = new PictureDrawable(svg.renderToPicture());
+			if (level3==null) level3 = SVG.getFromResource(this, R.drawable.level_3);
+			Drawable drawable = new PictureDrawable(level3.renderToPicture());
 			map.setImageDrawable(drawable);	
 			//clear pointer and info panel, when change to different level's map
-			map.movePinRelative(-100, -100);
+			map.hidePin();
 			LinearLayout info_pane = (LinearLayout) findViewById(R.id.info_pane);
 			info_pane.setVisibility(View.INVISIBLE);
 		} catch (SVGParseException e) { }
@@ -113,11 +119,11 @@ public class MapActivity extends Activity {
 		TouchImageView map = (TouchImageView) findViewById(R.id.map);
 
 		try {
-			SVG svg = SVG.getFromResource(this, R.drawable.level_4);
-			Drawable drawable = new PictureDrawable(svg.renderToPicture());
+			if (level4==null) level4 = SVG.getFromResource(this, R.drawable.level_4);
+			Drawable drawable = new PictureDrawable(level4.renderToPicture());
 			map.setImageDrawable(drawable);	
 			//clear pointer and info panel, when change to different level's map
-			map.movePinRelative(-100, -100);
+			map.hidePin();
 			LinearLayout info_pane = (LinearLayout) findViewById(R.id.info_pane);
 			info_pane.setVisibility(View.INVISIBLE);
 		} catch (SVGParseException e) { }
