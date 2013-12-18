@@ -61,12 +61,15 @@
             android:textSize="18sp" />
 
         <!-- Room location -->
+        <!-- 
         <TextView
             android:id="@+id/help_level"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Level: e.g. Level1, L1, Floor1, F1, 1st Floor..."
             android:textSize="18sp" />
+         -->
+        
 
         <!-- Phone number -->
         <TextView
@@ -77,13 +80,16 @@
             android:textSize="18sp" />
 
         <!-- E-mail address -->
+        <!-- 
         <TextView
             android:id="@+id/help_other"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Or combine level and room/section: e.g. L1-R1, Level1Room1..."
             android:textSize="18sp" />
-
+        
+         -->
+        
     </LinearLayout>
 
     <!-- Search Suggestions -->
