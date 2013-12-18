@@ -20,7 +20,8 @@
             android:name="com.example.sutdroomsearch.MapActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
-            android:theme="@style/FullscreenTheme" >
+            android:theme="@style/FullscreenTheme" 
+            android:screenOrientation="portrait">"
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -31,7 +32,8 @@
             android:name="com.example.sutdroomsearch.SearchActivity"
             android:label="@string/title_activity_search"
             android:theme="@style/FullscreenTheme"
-            android:windowSoftInputMode="stateVisible" >
+            android:windowSoftInputMode="stateVisible"
+            android:screenOrientation="portrait" >
         </activity>
     </application>
 
