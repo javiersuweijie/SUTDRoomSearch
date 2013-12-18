@@ -6,7 +6,6 @@ import android.graphics.BitmapFactory;
 import android.graphics.PointF;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 
 public class ZoomablePinView extends ImageView{
 
