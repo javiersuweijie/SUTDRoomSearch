@@ -28,7 +28,8 @@ public class MapActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		setContentView(R.layout.activity_map);
+		setContentView(R.layout.new_activity_map);
+		
 		// Hide info pane by default
 		LinearLayout info_pane = (LinearLayout) findViewById(R.id.info_pane);
 		info_pane.setVisibility(View.GONE);
@@ -256,8 +257,9 @@ public class MapActivity extends Activity {
 	 * @param view
 	 */
 	public void clearSearch(View view) {
-		// Clear search box
-		
+		// Clear any pins and return to Level 2's map
+		TouchImageView map = (TouchImageView) findViewById(R.id.map);
+		showL2Map(map);
 		// Hide info pane
 		LinearLayout info_pane = (LinearLayout) findViewById(R.id.info_pane);
 		info_pane.setVisibility(View.GONE);
