@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/map_activity"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent" >
+
+	<!-- Map -->
+	<com.example.sutdroomsearch.TouchImageView
+		android:id="@+id/map"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:background="#FFFFFF"
+		android:onClick="selectRoom" />
+
+	<!-- Search Bar -->
+	<LinearLayout
+		android:id="@+id/row1"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="vertical" >
+		<LinearLayout
+		android:id="@+id/search_bar"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="horizontal">"
+		
+		<!-- Search Box: Enter search query -->
+		<EditText
+			android:id="@+id/search_box"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:hint="Search"
+			android:focusable="false"
+			android:onClick="switchToSearch" />
+
+		<!-- List Button: Return to list of search results -->
+		<Button
+			android:id="@+id/search_list"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="List"
+			android:onClick="switchToSearch" />
+
+		<!-- Clear Button: Clear current search -->
+		<Button
+			android:id="@+id/search_clear"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="Clear"
+			android:onClick="clearSearch" />
+		</LinearLayout>
+		
+		<LinearLayout
+		    android:id="@+id/level_selector"
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:orientation="horizontal">"
+
+		    <Button
+		        android:id="@+id/l2_button"
+		        style="?android:attr/buttonStyleSmall"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_weight="1"
+		        android:onClick="showL2Map"
+		        android:text="Level 2" />
+
+		    <Button
+		        android:id="@+id/l3_button"
+		        style="?android:attr/buttonStyleSmall"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_weight="1"
+		        android:onClick="showL3Map"
+		        android:text="Level 3" />
+
+		    <Button
+		        android:id="@+id/l4_button"
+		        style="?android:attr/buttonStyleSmall"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:layout_weight="1"
+		        android:onClick="showL4Map"
+		        android:text="Level 4" />
+		</LinearLayout>
+	</LinearLayout>
+	
+	
+	<!-- Container for level selector and details pane -->
+	<LinearLayout
+		android:layout_gravity="bottom"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="vertical" >
+
+		<!-- Info Pane -->
+		<LinearLayout
+			android:id="@+id/info_pane"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="vertical"
+			android:background="#DD000000">
+			
+			<!-- Name of person -->
+			<TextView
+				android:id="@+id/info_name"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:text="Lui Siu Hang Simon"
+				android:textSize="20sp"
+				android:textColor="#EEEEEE"
+				android:textIsSelectable="true" />
+
+			<!-- Room location -->
+			<TextView
+				android:id="@+id/info_room"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:text="L3 R17 (West Wing)"
+				android:textSize="20sp"
+				android:textColor="#EEEEEE"
+				android:textIsSelectable="true" />
+
+			<!-- Phone number -->
+			<TextView
+				android:id="@+id/info_phone"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:text="64994537"
+				android:textSize="20sp"
+				android:textColor="#EEEEEE"
+				android:textIsSelectable="true"
+				android:clickable="true"
+				android:onClick="callPerson" />
+
+			<!-- E-mail address -->
+			<TextView
+				android:id="@+id/info_email"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:text="simon_lui@sutd.edu.sg"
+				android:textSize="20sp"
+				android:textColor="#EEEEEE"
+				android:textIsSelectable="true"
+				android:clickable="true"
+				android:onClick="emailPerson" />
+
+		</LinearLayout>      
+
+	</LinearLayout>
+
+</FrameLayout>
