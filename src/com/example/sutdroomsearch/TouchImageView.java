@@ -278,7 +278,6 @@ public class TouchImageView extends ImageView {
 	public void movePinRelative(float x, float y) {
 		if (pin==null) {
 			this.addPin();
-			this.measure(480,800);
 		}
 		float[] points = {x,y};
 		matrix.mapPoints(points);

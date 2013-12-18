@@ -3,14 +3,18 @@ package com.example.sutdroomsearch;
 import com.caverock.androidsvg.SVG;
 import com.caverock.androidsvg.SVGParseException;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Matrix;
+import android.graphics.Point;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.PictureDrawable;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Display;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -39,6 +43,8 @@ public class MapActivity extends Activity {
 	/**
 	 * Finds the person and the location associated with room number from search.
 	 */
+	@SuppressWarnings("deprecation")
+	@TargetApi(Build.VERSION_CODES.HONEYCOMB_MR2)
 	public void handleIntentExtras() {
 		Integer room = this.getIntent().getIntExtra("room_id",-1);
 		TouchImageView map = (TouchImageView) findViewById(R.id.map);
@@ -58,6 +64,20 @@ public class MapActivity extends Activity {
 			default:
 				break;
 			}
+			int width;
+			int height;
+			Display display = getWindowManager().getDefaultDisplay();
+			if (android.os.Build.VERSION.SDK_INT >= 13) {
+				Point size = new Point();
+				display.getSize(size);
+				width = size.x;
+				height = size.y;
+			}
+			else {
+				width = display.getWidth();
+				height = display.getHeight();
+			}
+			map.measure(width,height);
 			highlightRoom(location);
 			showPersonInfo(person);
 		}
