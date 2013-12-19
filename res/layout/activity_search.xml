@@ -57,7 +57,7 @@
             android:id="@+id/help_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Name: e.g. Simon, Lui, Simon Lui, S L..."
+            android:text="Name: e.g. Simon, Lui, Simon Lui, S L"
             android:textSize="18sp" />
 
         <!-- Room location -->
@@ -76,7 +76,7 @@
             android:id="@+id/help_roomsec"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Room/Section: e.g. Room1, R1, Section1, S1..."
+            android:text="Room number: eg. R1, R24, MR18, MR2"
             android:textSize="18sp" />
 
         <!-- E-mail address -->

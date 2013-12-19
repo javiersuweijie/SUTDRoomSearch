@@ -375,11 +375,11 @@ public class AllMatchArrayAdapter<T> extends BaseAdapter implements Filterable {
     	}
     	
     	private int findRoomNumber(String str) {
-    		String substr = findPattern("[^o]r[ ]*[0-9]+", str);
+    		String substr = findPattern("[^o][rm][ ]*[0-9]+", str);
     		if (substr != null) {
     			substr = substr.substring(1);
     		} else {
-    			substr = findPattern("(^r|room)[ ]*[0-9]+", str);
+    			substr = findPattern("(^r|(mr)|room)[ ]*[0-9]+", str);
     		}
     		
     		if (substr == null) {
