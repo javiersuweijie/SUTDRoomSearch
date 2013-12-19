@@ -3,6 +3,8 @@
 	android:id="@+id/map_activity"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent" >
+	
+    
 
 	<!-- Map -->
 	<com.example.sutdroomsearch.TouchImageView
@@ -11,7 +13,22 @@
 		android:layout_height="match_parent"
 		android:background="#FFFFFF"
 		android:onClick="selectRoom" />
-
+	<LinearLayout
+	    android:id="@+id/row0"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="vertical" >
+		<TextView
+		        android:id="@+id/level_title"
+		        android:layout_width="match_parent"
+		        android:layout_height="116dp"
+		        android:gravity="bottom"
+		        android:textAlignment="2"
+		        android:text="Level2"
+		        android:textColor="#000000"
+		        android:textIsSelectable="true"
+		        android:textSize="20sp" />
+	</LinearLayout>
 	<!-- Search Bar -->
 	<LinearLayout
 		android:id="@+id/row1"
@@ -35,20 +52,8 @@
 			android:onClick="switchToSearch" />
 
 		<!-- List Button: Return to list of search results -->
-		<Button
-			android:id="@+id/search_list"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="List"
-			android:onClick="switchToSearch" />
 
 		<!-- Clear Button: Clear current search -->
-		<Button
-			android:id="@+id/search_clear"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="Clear"
-			android:onClick="clearSearch" />
 		</LinearLayout>
 		
 		<LinearLayout
@@ -79,13 +84,17 @@
 		        android:id="@+id/l4_button"
 		        style="?android:attr/buttonStyleSmall"
 		        android:layout_width="wrap_content"
+		        android:color="#000000"
 		        android:layout_height="wrap_content"
 		        android:layout_weight="1"
 		        android:onClick="showL4Map"
 		        android:text="Level 4" />
+
 		</LinearLayout>
+		
 	</LinearLayout>
-	
+
+
 	
 	<!-- Container for level selector and details pane -->
 	<LinearLayout
