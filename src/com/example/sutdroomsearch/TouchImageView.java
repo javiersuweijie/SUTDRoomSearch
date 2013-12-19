@@ -265,7 +265,7 @@ public class TouchImageView extends ImageView {
 	
 	public void hidePin() {
 		if (pin!=null)
-		this.movePin(-100, -100);
+		this.movePin(-2000, -2000);
 	}
 	
 	public void movePin(float x, float y) {
