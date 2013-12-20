@@ -28,7 +28,7 @@ public class MapActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		setContentView(R.layout.new_activity_map);
+		setContentView(R.layout.activity_map);
 		
 		// Hide info pane by default
 		LinearLayout info_pane = (LinearLayout) findViewById(R.id.info_pane);

@@ -1,99 +1,68 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:orientation="vertical"
-    tools:context=".SearchActivity" >
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical"
+	tools:context=".SearchActivity" >
 
-    <!-- Search Bar -->
-    <LinearLayout
-        android:id="@+id/search_bar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal" >
-        
-        <!-- Search Box: Enter search query -->
-        <AutoCompleteTextView
-            android:id="@+id/search_box"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:hint="Search"
-            android:singleLine="true" />
+	<!-- Search Bar -->
+	<LinearLayout
+		android:id="@+id/search_bar"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="horizontal" >
+		
+		<!-- Search Box: Enter search query -->
+		<AutoCompleteTextView
+			android:id="@+id/search_box"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_weight="1"
+			android:hint="@string/search_hint"
+			android:singleLine="true" />
 
 
-        <!-- Clear Button: Clear current search -->
-        <Button
-            android:id="@+id/search_clear"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Clear"
-            android:onClick="clearSearch" />
+		<!-- Clear Button: Clear current search -->
+		<ImageButton
+			android:id="@+id/search_clear"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:src="@drawable/clear"
+			android:contentDescription="@string/clear"
+			android:onClick="clearSearch" />
 
-    </LinearLayout>
+	</LinearLayout>
 
-    <!-- Search Help -->
-    <LinearLayout
-        android:id="@+id/search_help"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:background="#DD000000">
+	<!-- Search Help -->
+	<LinearLayout
+		android:id="@+id/search_help"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/help_heading"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Possible search inputs (case insensitive)"
-            android:textSize="20sp"
-            android:textIsSelectable="true" />        
-        
-        <!-- Name of person -->
-        <TextView
-            android:id="@+id/help_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Name: e.g. Simon, Lui, Simon Lui, S L"
-            android:textSize="18sp" />
+		<TextView
+			android:id="@+id/help_heading"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="Search for name or room number:"
+			android:textSize="20sp" />        
+		
+		<!-- Name of person -->
+		<TextView
+			android:id="@+id/help_name"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="e.g. Simon, Lui, Simon Lui, S L"
+			android:textSize="18sp" />
 
-        <!-- Room location -->
-        <!-- 
-        <TextView
-            android:id="@+id/help_level"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Level: e.g. Level1, L1, Floor1, F1, 1st Floor..."
-            android:textSize="18sp" />
-         -->
-        
-
-        <!-- Phone number -->
-        <TextView
-            android:id="@+id/help_roomsec"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Room number: eg. R1, R24, MR18, MR2"
-            android:textSize="18sp" />
-
-        <!-- E-mail address -->
-        <!-- 
-        <TextView
-            android:id="@+id/help_other"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Or combine level and room/section: e.g. L1-R1, Level1Room1..."
-            android:textSize="18sp" />
-        
-         -->
-        
-    </LinearLayout>
-
-    <!-- Search Suggestions -->
-
-    <!-- Search Results -->
+		<!-- Room -->
+		<TextView
+			android:id="@+id/help_roomsec"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="R1, R24, MR18, MR2"
+			android:textSize="18sp" />
+		
+	</LinearLayout>
 
 </LinearLayout>

@@ -12,137 +12,130 @@
 		android:background="#FFFFFF"
 		android:onClick="selectRoom" />
 
-	<!-- Search Bar -->
+	<!-- Container for search bar and level selector -->
 	<LinearLayout
-		android:id="@+id/search_bar"
+		android:layout_gravity="top"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:orientation="horizontal" >
-		
-		<!-- Search Box: Enter search query -->
-		<EditText
-			android:id="@+id/search_box"
-			android:layout_width="0dp"
+		android:orientation="vertical">
+
+		<!-- Search Bar -->
+		<LinearLayout
+			android:id="@+id/search_bar"
+			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:layout_weight="1"
-			android:hint="Search"
-			android:focusable="false"
-			android:onClick="switchToSearch" />
+			android:orientation="horizontal" >
+			
+			<!-- Search Box: Enter search query -->
+			<EditText
+				android:id="@+id/search_box"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:hint="@string/search_hint"
+				android:focusable="false"
+				android:onClick="switchToSearch" />
 
-		<!-- List Button: Return to list of search results -->
-		<Button
-			android:id="@+id/search_list"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="List"
-			android:onClick="switchToSearch" />
+			<!-- Clear Button: Clear current search -->
+			<ImageButton
+				android:id="@+id/search_clear"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:src="@drawable/clear"
+				android:contentDescription="@string/clear"
+				android:onClick="clearSearch" />
 
-		<!-- Clear Button: Clear current search -->
-		<Button
-			android:id="@+id/search_clear"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="Clear"
-			android:onClick="clearSearch" />
-
-	</LinearLayout>
-
-	<!-- Container for level selector and details pane -->
-	<LinearLayout
-		android:layout_gravity="bottom"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:orientation="vertical" >
+		</LinearLayout>
 
 		<!-- Level Selector -->
 		<LinearLayout
 			android:id="@+id/level_selector"
-			android:layout_width="wrap_content"
+			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:orientation="vertical" >
+			android:orientation="horizontal" >
 			
 			<!-- Level 2 Button: show level 2 map -->
 			<Button
 				android:id="@+id/l2_button"
 				style="?android:attr/buttonStyleSmall"
-				android:layout_width="wrap_content"
+				android:layout_width="0dp"
 				android:layout_height="wrap_content"
-				android:text="L2"
+				android:layout_weight="1"
+				android:text="@string/level_2"
 				android:onClick="showL2Map" />
 
 			<!-- Level 3 Button: show level 3 map -->
 			<Button
 				android:id="@+id/l3_button"
 				style="?android:attr/buttonStyleSmall"
-				android:layout_width="wrap_content"
+				android:layout_width="0dp"
 				android:layout_height="wrap_content"
-				android:text="L3"
+				android:layout_weight="1"
+				android:text="@string/level_3"
 				android:onClick="showL3Map" />
 			
 			<!-- Level 4 Button: show level 4 map -->
 			<Button
 				android:id="@+id/l4_button"
 				style="?android:attr/buttonStyleSmall"
-				android:layout_width="wrap_content"
+				android:layout_width="0dp"
 				android:layout_height="wrap_content"
-				android:text="L4"
+				android:layout_weight="1"
+				android:text="@string/level_4"
 				android:onClick="showL4Map" />
 
 		</LinearLayout>
 
-		<!-- Info Pane -->
-		<LinearLayout
-			android:id="@+id/info_pane"
+	</LinearLayout>
+
+	<!-- Info Pane -->
+	<LinearLayout
+		android:id="@+id/info_pane"
+		android:layout_gravity="bottom"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="vertical"
+		android:background="#DD000000">
+		
+		<!-- Name of person -->
+		<TextView
+			android:id="@+id/info_name"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:orientation="vertical"
-			android:background="#DD000000">
-			
-			<!-- Name of person -->
-			<TextView
-				android:id="@+id/info_name"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:text="Lui Siu Hang Simon"
-				android:textSize="20sp"
-				android:textColor="#EEEEEE"
-				android:textIsSelectable="true" />
+			android:textSize="20sp"
+			android:textColor="#EEEEEE"
+			android:textIsSelectable="true" />
 
-			<!-- Room location -->
-			<TextView
-				android:id="@+id/info_room"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:text="L3 R17 (West Wing)"
-				android:textSize="20sp"
-				android:textColor="#EEEEEE"
-				android:textIsSelectable="true" />
+		<!-- Room location -->
+		<TextView
+			android:id="@+id/info_room"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:textSize="20sp"
+			android:textColor="#EEEEEE"
+			android:textIsSelectable="true" />
 
-			<!-- Phone number -->
-			<TextView
-				android:id="@+id/info_phone"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:text="64994537"
-				android:textSize="20sp"
-				android:textColor="#EEEEEE"
-				android:textIsSelectable="true"
-				android:clickable="true"
-				android:onClick="callPerson" />
+		<!-- Phone number -->
+		<TextView
+			android:id="@+id/info_phone"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:textSize="20sp"
+			android:textColor="#EEEEEE"
+			android:textIsSelectable="true"
+			android:clickable="true"
+			android:onClick="callPerson" />
 
-			<!-- E-mail address -->
-			<TextView
-				android:id="@+id/info_email"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:text="simon_lui@sutd.edu.sg"
-				android:textSize="20sp"
-				android:textColor="#EEEEEE"
-				android:textIsSelectable="true"
-				android:clickable="true"
-				android:onClick="emailPerson" />
-
-		</LinearLayout>      
+		<!-- E-mail address -->
+		<TextView
+			android:id="@+id/info_email"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:textSize="20sp"
+			android:textColor="#EEEEEE"
+			android:textIsSelectable="true"
+			android:clickable="true"
+			android:onClick="emailPerson" />
 
 	</LinearLayout>
 
