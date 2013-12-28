@@ -19,6 +19,7 @@
 			android:layout_height="wrap_content"
 			android:layout_weight="1"
 			android:hint="@string/search_hint"
+			android:textSize="18sp"
 			android:singleLine="true" />
 
 
@@ -45,7 +46,7 @@
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:text="Search for name or room number:"
-			android:textSize="20sp" />        
+			android:textSize="24sp" />        
 		
 		<!-- Name of person -->
 		<TextView
@@ -53,7 +54,7 @@
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:text="e.g. Simon, Lui, Simon Lui, S L"
-			android:textSize="18sp" />
+			android:textSize="20sp" />
 
 		<!-- Room -->
 		<TextView
