@@ -120,7 +120,7 @@
 
 		<!-- Room location -->
 		<TextView
-			android:id="@+id/info_room"
+			android:id="@+id/info_position"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:textSize="20sp"

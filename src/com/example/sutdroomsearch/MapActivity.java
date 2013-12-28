@@ -211,8 +211,8 @@ public class MapActivity extends Activity {
 		info_name.setText(person.name);
 
 		// Set room
-		TextView info_room = (TextView) findViewById(R.id.info_room);
-		info_room.setText(person.position);
+		TextView info_position = (TextView) findViewById(R.id.info_position);
+		info_position.setText(person.position);
 		
 		// Set phone number
 		TextView info_phone = (TextView) findViewById(R.id.info_phone);
