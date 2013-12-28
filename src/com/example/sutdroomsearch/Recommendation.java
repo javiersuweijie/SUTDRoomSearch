@@ -20,6 +20,6 @@ public class Recommendation {
 	@Override
 	public String toString() {
 		if (user_name == null) return room_name;
-		else return room_name+"|"+user_name;
+		else return room_name + " | " + user_name;
 	}
 }
