@@ -93,6 +93,8 @@ public class MapActivity extends Activity {
 		long start_time = System.currentTimeMillis();
 		this.level = 2;
 		TouchImageView map = (TouchImageView) findViewById(R.id.map);
+		TextView level_title = (TextView) findViewById(R.id.level_title);
+		level_title.setText("Level 2");
 
 		try {
 			if (level2==null) level2 = SVG.getFromResource(this, R.drawable.level_2);
@@ -116,6 +118,8 @@ public class MapActivity extends Activity {
 	public void showL3Map(View view) {
 		this.level = 3;
 		TouchImageView map = (TouchImageView) findViewById(R.id.map);
+		TextView level_title = (TextView) findViewById(R.id.level_title);
+		level_title.setText("Level 3");
 		
 		try {
 			if (level3==null) level3 = SVG.getFromResource(this, R.drawable.level_3);
@@ -137,6 +141,9 @@ public class MapActivity extends Activity {
 	public void showL4Map(View view) {
 		this.level = 4;
 		TouchImageView map = (TouchImageView) findViewById(R.id.map);
+		TextView level_title = (TextView) findViewById(R.id.level_title);
+		level_title.setText("Level 4");
+
 		try {
 			if (level4==null) level4 = SVG.getFromResource(this, R.drawable.level_4);
 			Drawable drawable = new PictureDrawable(level4.renderToPicture());
