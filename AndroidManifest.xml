@@ -11,30 +11,31 @@
         android:targetSdkVersion="15" />
 
     <application
-        android:allowBackup="true"
-        android:debuggable="true"
-        android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@android:style/Theme.Holo.Light" >
+        android:icon="@drawable/ic_launcher"
+        android:theme="@android:style/Theme.Holo.Light"
+        android:debuggable="true" >
+
         <activity
             android:name="com.example.sutdroomsearch.MapActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
             android:theme="@android:style/Theme.Holo.Light.NoActionBar.Fullscreen" 
-            android:screenOrientation="portrait">"
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name="com.example.sutdroomsearch.SearchActivity"
             android:label="@string/title_activity_search"
-            android:theme="@android:style/Theme.Holo.Light.NoActionBar.Fullscreen" 
-            android:windowSoftInputMode="stateVisible"
-            android:screenOrientation="portrait" >
+            android:theme="@android:style/Theme.Holo.Light.NoActionBar.Fullscreen"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateVisible" >
         </activity>
+
     </application>
 
 </manifest>
